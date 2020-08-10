@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABQUlEQVQ4T8WTP0sDURDEZ/a8qFhYJFpYBbQVWyEg6iewsDdCWsEPEPFBLBQsbKwEiaUfQbAQ/NNbaWkV1LvCIlokd7tyhRA0xx3kwFfOY3/MzLJEwY9pvDlnlY5jWHU28QmMBY7dYdrv+VTgTLPXDg5K9YrrrzK2atAqtYdpmcCy669LjFMSlwqrJwMEXwxWFbA9qAHW88Xf6Dh+/YD/OCw3o3MR2zbgnkBNYW+AdAU2P0yDYSVo+bepwCQWhFt5d2WCtdD5N/8AVLugJN3pLiDTaY5zOxTRRYO3oKonVLkG9W4QamQj6Tg3UKFXonxVsU2BTI3ssHBg4ZFR9FJi4NEDPhS6LJDxkTssPjJwBLNn0I4BKY/ssLjT24/OYNbIC6Sg9u78h9Rbnt3rLSnskJTJLKiRTyG9HThGqcAsSNb/Nweb6hXf+XCNAAAAAElFTkSuQmCC"/>
+    <title>NoteBook - WorkBook</title>
+    <link href="handsontable.full.min.css" rel="stylesheet">
+    <script src="handsontable.full.min.js"></script>
+  </head>
+
+  <body>
+      <div id="example"></div>
+      <button id="export-file">Export CSV</button>
+      <script type="text/javascript">
+        var data = [
+          ['', 'Ford', 'Tesla', 'Toyota', 'Honda'],
+          ['2017', 10, 11, 12, 13],
+          ['2018', 20, 11, 14, 13],
+          ['2019', 30, 15, 12, 13]
+        ];
+
+        var container = document.getElementById('example');
+        var hot = new Handsontable(container, {
+          data: data,
+          rowHeaders: true,
+          colHeaders: true,
+          filters: true,
+          dropdownMenu: true
+        });
+
+
+        var button1 = document.getElementById('export-file');
+        var exportPlugin1 = hot.getPlugin('exportFile');
+
+        button1.addEventListener('click', function() {
+          exportPlugin1.downloadFile('csv', {
+            bom: false,
+            columnDelimiter: ',',
+            columnHeaders: false,
+            exportHiddenColumns: true,
+            exportHiddenRows: true,
+            fileExtension: 'csv',
+            filename: 'Handsontable-CSV-file_[YYYY]-[MM]-[DD]',
+            mimeType: 'text/csv',
+            rowDelimiter: '\r\n',
+            rowHeaders: true
+          });
+        });
+      </script>
+  </body>
+</html>

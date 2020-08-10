@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CodeRunner</title>
+        <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABN0lEQVQ4T6WTsUrEQBCG/5kk4AvoQ8gVNhZWKoiFlaL4FraCIl6MXmdnJRZi4RPoA5wIFqI+gNpY2Hi5Bwgx88ueFzhyyXJw2+zy78y3/87sCqYc4vLn4t9NGBeqrKIIr/od+fadMQDMHmU5VMNqIIEYkM80CW+bIP+A45x1AQKcwOyAomu90+ixIaYZAHIPIheA9WFc6p3NfFQhXgeg3Yvoq0syRTeNo+4EAKNJcBOQX6PBEwPM5FqVLQCL/g5bTg12xq7gCkegTcWqFGxBZF2AN6e5PedkVPcCtOA8hRtUPVfDSlmLUhfoSyOgdOKSyvWgrQCcm1Kv60IHsH1AnwAsD+vwMFy72Y1SPxwHEO8C7kJky1dEAlmm4aX/HYwQnP2fJIqb3sGzv22WE8F2moR3tYBpfvQfbgKTwlxj7SIAAAAASUVORK5CYII="/>
+        <style type="text/css" media="screen">body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"}#editor{position:absolute;top:0;right:0;bottom:0;left:0;width:60%;float:left}#result{width:40%;float:right;border-left:10px solid #ebebeb;height:100vh;margin-top:0;position:absolute;top:0;right:0;box-sizing:border-box;font-family:arial}#result h4{margin:5px;padding:0;color:#0c93f3}#result-cont{padding:10px 20px}.mr5{margin:5px}.btn{cursor:pointer;display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;border:1px solid transparent;padding:.175rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}.btn-danger{color:#fff;background-color:#dc3545;border-color:#dc3545}#settings{display:none;position:absolute;z-index:9999;padding:5px 10px;background:#1d1919;opacity:.8;color:#fff;width:500px;right:0;left:initial!important;overflow:scroll}</style>
+    </head>
+<body>
+
+    <div id="editor"></div>
+    <div id="result">
+        <button class="btn mr5" onclick="runIt(event)">Run</button>
+        <button class="btn mr5" onclick="clearIt(event)">Clear</button>
+        <button class="btn mr5" onclick="setIt(event)">Settings</button>
+        <h4>Result</h4>
+        <div id="result-cont"></div>
+    </div>
+
+    <div id="settings"> 
+        <table class="table table-bordered" border="1" cellpadding="10" cellspacing="1">
+            <tr>
+                <th>Theme</th>
+                <td>
+                    <select name="theme" id="theme">
+                        <option value="ambiance">ambiance</option>
+                        <option value="chaos">chaos</option>
+                        <option value="chrome">chrome</option>
+                        <option value="clouds_midnight">clouds_midnight</option>
+                        <option value="clouds">clouds</option>
+                        <option value="cobalt">cobalt</option>
+                        <option value="crimson_editor">crimson_editor</option>
+                        <option value="dawn">dawn</option>
+                        <option value="dracula">dracula</option>
+                        <option value="dreamweaver">dreamweaver</option>
+                        <option value="eclipse">eclipse</option>
+                        <option value="github">github</option>
+                        <option value="gob">gob</option>
+                        <option value="gruvbox">gruvbox</option>
+                        <option value="idle_fingers">idle_fingers</option>
+                        <option value="iplastic">iplastic</option>
+                        <option value="katzenmilch">katzenmilch</option>
+                        <option value="kr_theme">kr_theme</option>
+                        <option value="kuroir">kuroir</option>
+                        <option value="merbivore_soft">merbivore_soft</option>
+                        <option value="merbivore">merbivore</option>
+                        <option value="mono_industrial">mono_industrial</option>
+                        <option value="monokai">monokai</option>
+                        <option value="pastel_on_dark">pastel_on_dark</option>
+                        <option value="solarized_dark">solarized_dark</option>
+                        <option value="solarized_light">solarized_light</option>
+                        <option value="sqlserver">sqlserver</option>
+                        <option value="terminal">terminal</option>
+                        <option value="textmate">textmate</option>
+                        <option value="tomorrow_night_blue">tomorrow_night_blue</option>
+                        <option value="tomorrow_night_bright">tomorrow_night_bright</option>
+                        <option value="tomorrow_night_eighties">tomorrow_night_eighties</option>
+                        <option value="tomorrow_night">tomorrow_night</option>
+                        <option value="tomorrow">tomorrow</option>
+                        <option value="twilight">twilight</option>
+                        <option value="vibrant_ink">vibrant_ink</option>
+                        <option value="xcode">xcode</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Font Size</th>
+                <td>
+                    <select name="font_size" id="font_size">
+                        <option value="10px">10px</option>
+                        <option value="11px">11px</option>
+                        <option value="13px">13px</option>
+                        <option value="14px">14px</option>
+                        <option value="15px">15px</option>
+                        <option value="16px">16px</option>
+                        <option value="17px">17px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                        <option value="22px">22px</option>
+                        <option value="25px">25px</option>
+                        <option value="30px">30px</option>
+                        <option value="35px">35px</option>
+                        <option value="40px">40px</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Wrap Text</th>
+                <td>
+                    <select name="wrap_text" id="wrap_text">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Soft Tab</th>
+                <td>
+                    <input type="number" name="soft_tab_size" id="soft_tab_size" value="4" style="width: 50px">
+                    <select name="soft_tab" id="soft_tab">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Show Invisible</th>
+                <td>
+                    <select name="show_invisible" id="show_invisible">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Show Line Number</th>
+                <td>
+                    <select name="show_gutter" id="show_gutter">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Show Indent Guides</th>
+                <td>
+                    <select name="show_indent" id="show_indent">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <a class="btn btn-danger mr5" onclick="closeIt()">Close</a>
+    </div>
+
+    <form method="POST" name="ajaxForm" id="ajaxForm">
+        <textarea name="content" id="content"></textarea>
+    </form>
+
+    <script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="index.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
