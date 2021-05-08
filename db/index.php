@@ -22,14 +22,16 @@ function adminer_object() {
         new AdminerSlugify,
         new AdminerForeignSystem,
         new AdminerTableHeaderScroll,
+        new AdminerDumpArray,
+        // new AdminerLoginPasswordLess('$2y$10$b5dStaWS5Ao5jRYQ2VfVSe9Xu8SqWtQMwtCvh0gDfYSz3IWlvcugO'),
     );
 
     // It is possible to combine customization and plugins:
     class AdminerSoftware extends Adminer {
         function login($login, $password) {
             global $jush;
-            if ($jush == "sqlite")
-                return ($login === 'root') && ($password === 'admin');
+            if ($jush == "sqlite") return ($login === 'root' && $password === 'admin');
+            // if ($jush == "mongo") return ($login === 'root' && $password === 'admin');
             return true;
         }
         function databases($flush = true) {
